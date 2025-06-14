@@ -3,9 +3,11 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants/index.js";
+import Button from "./Button.jsx";
 import CanvasLoader from "./CanvasLoader.jsx";
 import Cube from "./Cube.jsx";
 import HackerRoom from "./HackerRoom.jsx";
+import HeroCamera from "./HeroCamera.jsx";
 import ReactLogo from "./ReactLogo.jsx";
 import Rings from "./Ring.jsx";
 import Target from "./Target.jsx";
@@ -32,11 +34,13 @@ const Hero = () => {
         <Canvas className="w-full h-full" >
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-            <HackerRoom
-              position={sizes.deskPosition}
-              rotation={[0, -Math.PI, 0]}
-              scale={sizes.deskScale}
-            />
+            <HeroCamera isMobile={isMobile}>
+              <HackerRoom
+                position={sizes.deskPosition}
+                rotation={[0, -Math.PI, 0]}
+                scale={sizes.deskScale}
+              />
+            </HeroCamera>
             <group>
               <Target position={sizes.targetPosition} />
               <ReactLogo position={sizes.reactLogoPosition} />
@@ -48,7 +52,11 @@ const Hero = () => {
           </Suspense>
         </Canvas>
       </div>
-      Hero
+      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+        <a href="#contact" className="w-fit">
+          <Button name="Let's work together" isBeam containerClass="sm:w-fit w-full sm:min-w-96" />
+        </a>
+      </div>
     </section >
   )
 };
