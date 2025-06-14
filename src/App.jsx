@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import About from "./components/About";
 import Hero from "./components/Hero";
 import NavBar from "./components/NavBar";
@@ -7,6 +8,7 @@ const App = () => {
     <NavBar />
     <Hero />
     <About />
+    <Analytics />
   </main>
 };
 
